@@ -1,0 +1,6 @@
+.buttons {
+    float: right;
+    border: solid rgb(93, 112, 251);
+    border-radius:7px;
+    text-decoration-color:  rgb(93, 112, 251);
+}
