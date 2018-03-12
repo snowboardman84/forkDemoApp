@@ -18,6 +18,11 @@
   padding-left: 10;
 }
 
+.fork_logo:hover {
+  cursor: move;
+  opacity: .8;
+}
+
 /* .App-header {
   background-color: rgb(77, 76, 76);
   height: 100px;
