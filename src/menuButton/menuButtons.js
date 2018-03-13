@@ -18,7 +18,7 @@ export default class Menubuttons extends React.Component {
 
   login() {
       return new Promise((resolve, reject)=>{
-        axios.post('/loginData', { username: this.state.userName, password: this.state.password }).then((result) => {
+        axios.post('/login', { username: this.state.userName, password: this.state.password }).then((result) => {
           this.setState({
             loginMessage: result.data,
             nestedModal: !this.state.nestedModal,
@@ -42,8 +42,8 @@ export default class Menubuttons extends React.Component {
     return (
       <div className='buttons'>
         <ButtonGroup>
-          <CreateAcct CreateAcct={this.props.CreateAcct} createAcctCheck={this.props.createAcctCheck} login={this.login}/>
-          <Login Login={this.props.login} loginCheck={this.props.loginCheck} />           
+          <CreateAcct login={this.login}/>
+          <Login login={this.login}/>           
           <Button>Search</Button>
         </ButtonGroup>
       </div>
