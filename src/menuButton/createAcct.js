@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from "axios";
-import Menubuttons from './menuButtons.js';
+// import Menubuttons from './menuButtons.js';
 
 export default class CreateAcct extends React.Component {
   constructor(props) {
@@ -26,6 +26,8 @@ export default class CreateAcct extends React.Component {
     this.onUserChange = this.onUserChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onPassword2Change = this.onPassword2Change.bind(this);
+    this.showPassword = this.showPassword.bind(this);
+    this.showPassword2 = this.showPassword2.bind(this);
   }
 
   toggle() {
@@ -43,7 +45,7 @@ export default class CreateAcct extends React.Component {
               style: {
                 color: "black"
               },
-              message: result,
+              message: "Account created successfully",
               nestedModal: !this.state.nestedModal,
               closeAll: false,
               userData: {
@@ -107,7 +109,29 @@ export default class CreateAcct extends React.Component {
     });
   }
 
+  showPassword() {
+    if (this.state.passwordType === "password") {
+      this.setState({
+        passwordType: "text"
+      })
+    } else {
+      this.setState({
+        passwordType: "password"
+      })
+    }
+  }
 
+  showPassword2() {
+    if (this.state.password2Type === "password") {
+      this.setState({
+        passwordType: "text"
+      })
+    } else {
+      this.setState({
+        passwordType: "password"
+      })
+    }
+  }
   render() {
     return (
       <div >
@@ -126,6 +150,11 @@ export default class CreateAcct extends React.Component {
               <br />
               <input id="password2Input" type="password" name="password2" placeholder="Re-enter password" value={this.state.password2} onChange={this.onPassword2Change} />
               <br />
+              {/* <input type={this.state.passwordType} name="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
+              <br />
+              <input type={this.state.password2Type} name="password2" placeholder="Re-enter password" value={this.state.password2} onChange={this.onPassword2Change} />
+              <br /> */}
+              <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>
             </div>
             <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
               <ModalHeader>{this.state.message}</ModalHeader>

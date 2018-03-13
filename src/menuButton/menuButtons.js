@@ -20,7 +20,7 @@ export default class Menubuttons extends React.Component {
       return new Promise((resolve, reject)=>{
         axios.post('/login', { username: this.state.userName, password: this.state.password }).then((result) => {
           this.setState({
-            loginMessage: result.data,
+            loginMessage: result,
             nestedModal: !this.state.nestedModal,
             closeAll: false,
             userData: {

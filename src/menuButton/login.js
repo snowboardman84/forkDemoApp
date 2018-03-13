@@ -33,7 +33,7 @@ export default class Login extends React.Component {
     this.props.login(this.state.userName, this.state.password).then((result) => {
       console.log(result)
       this.setState({
-        loginMessage: result.message,
+        loginMessage: result,
         nestedModal: !this.state.nestedModal,
         closeAll: false,
         userName: '',
