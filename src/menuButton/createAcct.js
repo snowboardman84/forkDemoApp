@@ -37,13 +37,13 @@ export default class CreateAcct extends React.Component {
   toggleNested() {
     if (this.state.password === this.state.password2) {
       if (this.state.nestedModal === false) {
-        axios.post('/createAcctData', { userName: this.state.userName, password: this.state.password}).then((result) => {
+        axios.post('/createAcct', { userName: this.state.userName, password: this.state.password}).then((result) => {
           this.props.login(this.state.userName, this.state.password).then((result) => {
             this.setState({
               style: {
                 color: "black"
               },
-              message: result.data.message,
+              message: result,
               nestedModal: !this.state.nestedModal,
               closeAll: false,
               userData: {
