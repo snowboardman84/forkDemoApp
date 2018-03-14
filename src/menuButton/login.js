@@ -32,7 +32,7 @@ export default class Login extends React.Component {
   toggleNested() {
     this.props.login(this.state.userName, this.state.password).then((result) => {
       this.setState({
-        loginMessage: result,
+        loginMessage: result.data.message,
         nestedModal: !this.state.nestedModal,
         closeAll: false,
         userName: '',
