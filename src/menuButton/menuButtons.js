@@ -14,13 +14,18 @@ export default class Menubuttons extends React.Component {
       isOpen: false,
       test: "test"
     };
+    // this.login = this.login.bind(this);
+    // this.toggle = this.toggle.bind(this);
+
+
   }
+  
 
   login() {
       return new Promise((resolve, reject)=>{
         axios.post('/login', { username: this.state.userName, password: this.state.password }).then((result) => {
           this.setState({
-            loginMessage: result,
+            loginMessage: result.data,
             nestedModal: !this.state.nestedModal,
             closeAll: false,
             userData: {
@@ -29,8 +34,9 @@ export default class Menubuttons extends React.Component {
             }
           });
         resolve(result.data.name);
+      })
     })
-  })}
+  }
 
   toggle() {
     this.setState({
@@ -42,8 +48,8 @@ export default class Menubuttons extends React.Component {
     return (
       <div className='buttons'>
         <ButtonGroup>
-          <CreateAcct login={this.login}/>
-          <Login login={this.login}/>           
+          <CreateAcct login={this.props.login} loginCheck={this.props.loginCheck}/>
+          <Login login={this.props.login} loginCheck={this.props.loginCheck}/>           
           <Button>Search</Button>
         </ButtonGroup>
       </div>

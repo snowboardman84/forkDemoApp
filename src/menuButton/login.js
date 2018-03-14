@@ -31,7 +31,6 @@ export default class Login extends React.Component {
 
   toggleNested() {
     this.props.login(this.state.userName, this.state.password).then((result) => {
-      console.log(result)
       this.setState({
         loginMessage: result,
         nestedModal: !this.state.nestedModal,
@@ -43,7 +42,7 @@ export default class Login extends React.Component {
   }
 
   toggleAll() {
-    if(this.state.loginMessage === "Login successful!"){
+    if(this.state.loginMessage === "Login successful"){
     this.setState({
       nestedModal: !this.state.nestedModal,
       closeAll: true
@@ -51,7 +50,6 @@ export default class Login extends React.Component {
   } else {
     this.setState({
       nestedModal: !this.state.nestedModal,
-      // closeAll: true
     });
   }
   }
