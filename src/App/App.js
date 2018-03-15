@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../forkcircle.png';
 import './App.css';
 import Menubuttons from '../menuButton/menuButtons.js'
+import RecipeInputModal from '../recipeInputModal/recipeInputModal.js'
 //import backgroundImage from '../foodwallpaper.jpg';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         </p>
         <div className="Menubuttons">
           < Menubuttons />
+          <RecipeInputModal />
         </div>
       </div>
     )
