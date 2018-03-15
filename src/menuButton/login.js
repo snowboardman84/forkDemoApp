@@ -105,7 +105,7 @@ export default class Login extends React.Component {
             </Modal>
           </ModalBody>
           <ModalFooter>
-            <Button color="success" onClick={this.toggleNested}>Log In</Button>
+            <Button color="secondary" onClick={this.toggleNested}>Log In</Button>
           </ModalFooter>
         </Modal>
       </div>

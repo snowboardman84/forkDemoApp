@@ -149,7 +149,7 @@ export default class CreateAcct extends React.Component {
             </Modal>
           </ModalBody>
           <ModalFooter>
-            <Button color="success" onClick={this.toggleNested}>Create Account</Button>
+            <Button color="secondary" onClick={this.toggleNested}>Create Account</Button>
           </ModalFooter>
         </Modal>
       </div>
