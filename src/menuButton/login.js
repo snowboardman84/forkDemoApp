@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Menubuttons from './menuButtons';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -10,17 +11,18 @@ export default class Login extends React.Component {
       closeAll: false,
       userName: '',
       password: '',
-      loginMessage: "",
+      loginMessage: '',
       loginCheck: false,
       passwordType: "password"
     };
 
     this.toggle = this.toggle.bind(this);
-    this.toggleNested = this.toggleNested.bind(this);
+    this.loginToggle = this.loginToggle.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
     this.onUserChange = this.onUserChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.showPassword = this.showPassword.bind(this);
+
   }
 
   toggle() {
@@ -29,21 +31,18 @@ export default class Login extends React.Component {
     });
   }
 
-  toggleNested() {
+  loginToggle() {
     this.props.login(this.state.userName, this.state.password).then((result) => {
-      console.log(result)
       this.setState({
-        loginMessage: result.message,
+        loginMessage: result,
         nestedModal: !this.state.nestedModal,
-        closeAll: false,
-        userName: '',
-        password: ''
+        closeAll: true,
       });
     })
   }
 
   toggleAll() {
-    if(this.state.loginMessage === "Login successful!"){
+    if(this.state.loginMessage === "Login successful"){
     this.setState({
       nestedModal: !this.state.nestedModal,
       closeAll: true
@@ -51,7 +50,6 @@ export default class Login extends React.Component {
   } else {
     this.setState({
       nestedModal: !this.state.nestedModal,
-      // closeAll: true
     });
   }
   }
@@ -99,15 +97,15 @@ export default class Login extends React.Component {
               <br />
               <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>
             </div>
-            <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
-              <ModalHeader>{this.state.signInMessage}</ModalHeader>
+            <Modal isOpen={this.state.nestedModal} toggle={this.loginToggle} onClosed={this.state.closeAll ? this.toggle : undefined}>
+              <ModalHeader>{this.state.loginMessage}</ModalHeader>
               <ModalFooter>
                 <Button color="secondary" onClick={this.toggleAll}>Ok</Button>
               </ModalFooter>
             </Modal>
           </ModalBody>
           <ModalFooter>
-            <Button color="success" onClick={this.toggleNested}>Log In</Button>
+            <Button color="secondary" onClick={this.loginToggle}>Log In</Button>
           </ModalFooter>
         </Modal>
       </div>

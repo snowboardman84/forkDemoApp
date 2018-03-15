@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from "axios";
-import Menubuttons from './menuButtons.js';
+import Menubuttons from './menuButtons';
 
 export default class CreateAcct extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ export default class CreateAcct extends React.Component {
       userName: '',
       password: '',
       password2: "",
+      passwordType: "password",
       message: "placeholder",
       style: {
         color: "black"
@@ -21,29 +22,29 @@ export default class CreateAcct extends React.Component {
       createAcctCheck: false,
     };
     this.toggle = this.toggle.bind(this);
-    this.toggleNested = this.toggleNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
     this.onUserChange = this.onUserChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onPassword2Change = this.onPassword2Change.bind(this);
+    this.showPassword = this.showPassword.bind(this);
+    this.createAcct = this.createAcct.bind(this);
   }
-
+  
   toggle() {
     this.setState({
       modal: !this.state.modal
     });
   }
-
-  toggleNested() {
+// This was toggleNested
+  createAcct() {
     if (this.state.password === this.state.password2) {
       if (this.state.nestedModal === false) {
-        axios.post('/createAcct', { userName: this.state.userName, password: this.state.password}).then((result) => {
-          this.props.login(this.state.userName, this.state.password).then((result) => {
+        axios.post('/createAcctData', { userName: this.state.userName, password: this.state.password}).then((result) => {
             this.setState({
               style: {
                 color: "black"
               },
-              message: result,
+              message: result.data.message,
               nestedModal: !this.state.nestedModal,
               closeAll: false,
               userData: {
@@ -52,6 +53,7 @@ export default class CreateAcct extends React.Component {
               }
             });
           })
+        this.props.login(this.state.userName, this.state.password).then((result) => {
         })
       } else {
         this.setState({
@@ -71,7 +73,7 @@ export default class CreateAcct extends React.Component {
         closeAll: false,
         password: "",
         password2: ""
-      });
+      })
     }
   }
 
@@ -107,6 +109,17 @@ export default class CreateAcct extends React.Component {
     });
   }
 
+  showPassword() {
+    if (this.state.passwordType === "password" || this.state.passwordType === "password2") {
+      this.setState({
+        passwordType: "text",
+      })
+    } else {
+      this.setState({
+        passwordType: "password",
+      })
+    }
+  }
 
   render() {
     return (
@@ -122,12 +135,13 @@ export default class CreateAcct extends React.Component {
               <br />
               <b>Password:</b>
               <br />
-              <input id="passwordInput" type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
+              <input type={this.state.passwordType} name="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
               <br />
-              <input id="password2Input" type="password" name="password2" placeholder="Re-enter password" value={this.state.password2} onChange={this.onPassword2Change} />
+              <input type={this.state.passwordType} name="password2" placeholder="Re-enter password" value={this.state.password2} onChange={this.onPassword2Change} />
               <br />
+              <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>
             </div>
-            <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle : undefined}>
+            <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.createAcct} onClosed={this.state.closeAll ? this.toggle : undefined}>
               <ModalHeader>{this.state.message}</ModalHeader>
               <ModalFooter>
                 <Button color="secondary" onClick={this.toggleAll}>Ok</Button>
@@ -135,7 +149,7 @@ export default class CreateAcct extends React.Component {
             </Modal>
           </ModalBody>
           <ModalFooter>
-            <Button color="success" onClick={this.toggleNested}>Create Account</Button>
+            <Button color="secondary" onClick={this.createAcct}>Create Account</Button>
           </ModalFooter>
         </Modal>
       </div>
