@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../forkcircle.png';
 import './App.css';
 import Menubuttons from '../menuButton/menuButtons.js'
+import RecipeInputModal from '../recipeInputModal/recipeInputModal.js'
 //import backgroundImage from '../foodwallpaper.jpg';
 import Example from '../spinThing.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -20,6 +21,7 @@ class App extends Component {
         </p>
         <div className="Menubuttons">
           < Menubuttons />
+          <RecipeInputModal />
         </div>
         < Example  className="Spin"/>
         <div>
