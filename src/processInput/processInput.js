@@ -33,6 +33,7 @@ export default class ProcessInput extends React.Component {
         let process = [...this.state.process];
         process[i] = event.target.value;
         this.setState({ process });
+        console.log(this.state.process)
     }
 
     addClick() {
@@ -49,10 +50,9 @@ export default class ProcessInput extends React.Component {
         event.preventDefault();
         axios.post('/submitRecipe', { title: this.props.recipeTitle, ingredients: this.props.ingredients, process: this.state.process }).then((result) => {
             alert(result.data.message);
-            console.log('Recipe added to database')
         })
         this.props.modalToggle; //why no work?
-}
+    }
 
 render() {
     return (
