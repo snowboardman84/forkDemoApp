@@ -4,12 +4,23 @@ import {
 } from 'reactstrap';
 import RecipeInput from '../recipeInput/recipeInput.js';
 import axios from 'axios';
+var jwt = require('jsonwebtoken');
 
 export default class ProcessInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { process: [] };
+        this.state = { 
+            process: [] ,
+            userName: '',
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount () {
+        var token = localStorage.getItem('token');
+        axios.post('/getUser', {token}).then((result) => {
+            this.setState({ userName: result.data });
+        })
     }
 
     createUI() {
@@ -33,7 +44,6 @@ export default class ProcessInput extends React.Component {
         let process = [...this.state.process];
         process[i] = event.target.value;
         this.setState({ process });
-        console.log(this.state.process)
     }
 
     addClick() {
@@ -48,7 +58,12 @@ export default class ProcessInput extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('/submitRecipe', { title: this.props.recipeTitle, ingredients: this.props.ingredients, process: this.state.process }).then((result) => {
+        axios.post('/submitRecipe', { 
+            title: this.props.recipeTitle, 
+            author: this.state.userName, 
+            ingredients: this.props.ingredients, 
+            process: this.state.process 
+        }).then((result) => {
             alert(result.data.message);
         })
         this.props.modalToggle; //why no work?

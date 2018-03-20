@@ -13,9 +13,11 @@ export default class ListRecipes extends Component {
         this.renderRecipes = this.renderRecipes.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         axios.post('/listRecipes').then((result) => {
-            this.setState({ recipeList: result.data })
+            this.setState({ recipeList: result.data });
+            debugger;
+            console.log(`result = ${result.data.process}`);
         })
     }
 
@@ -38,7 +40,7 @@ export default class ListRecipes extends Component {
                                 <ul className="lead">
                                     {this.state.recipeList[i].ingredients.map((value, x) => {
                                         return (
-                                            <li>{this.state.recipeList[i].ingredients[x]}</li>
+                                            <li key={x}>{this.state.recipeList[i].ingredients[x]}</li>
                                         )
                                     })}
                                 </ul>
@@ -47,7 +49,7 @@ export default class ListRecipes extends Component {
                                 <ol className="lead">
                                     {this.state.recipeList[i].process.map((value, y) => {
                                         return (
-                                            <li>{this.state.recipeList[i].process[y]}</li>
+                                            <li key={y}>{this.state.recipeList[i].process[y]}</li>
                                         )
                                     })}
                                 </ol>
