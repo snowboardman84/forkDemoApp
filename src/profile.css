@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  
+  Form {
+    width: 20%;
+    background-color: #5370ff;
+    padding: 2px;
+    margin: 2px;
+    border: 2px;
+  }
+  
+  .forkHeader {
+    width: 90%;
+    align-content: center;
+  }

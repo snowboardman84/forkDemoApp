@@ -7,12 +7,13 @@ import RecipeInputModal from '../recipeInputModal/recipeInputModal.js'
 import Example from '../spinThing.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import BasicExample from '../Router.js';
-import Profile from '../profile.js';
+import '.login.css';
 
-class App extends Component {
+
+class Login extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="Login">
         {/* <img src={backgroundImage} className="background" alt="background" /> */}
 
         <img src={logo} className="fork_logo" alt="logo" />
@@ -22,14 +23,11 @@ class App extends Component {
         <div className="Menubuttons">
           < Menubuttons />
           <RecipeInputModal />
-          
         </div>
-        < Profile />
         < Example  className="Spin"/>
         <div>
           <br/>
           < BasicExample />
-          
         </div>
         <br />
             <ul>
@@ -44,4 +42,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Login;
