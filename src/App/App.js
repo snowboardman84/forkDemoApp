@@ -24,7 +24,7 @@ class App extends Component {
           <RecipeInputModal />
           
         </div>
-        < Profile />
+        {/* < Profile classname="Profile"/> */}
         < Example  className="Spin"/>
         <div>
           <br/>
