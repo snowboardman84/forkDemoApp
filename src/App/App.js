@@ -6,11 +6,6 @@ import RecipeInputModal from '../recipeInputModal/recipeInputModal.js';
 import Spinner from '../spinThing.js';
 import Contact from '../Us/contact.js';
 import About from '../Us/aboutUs.js'
-
-
-
-import Menubuttons from '../menuButton/menuButtons.js'
-import RecipeInputModal from '../recipeInputModal/recipeInputModal.js'
 //import backgroundImage from '../foodwallpaper.jpg';
 import Example from '../spinThing.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -49,6 +44,7 @@ class App extends Component {
                 <ul >
                   <p2 class="copyright"> © Fork, 2018 All rights are given for free. Your Welcome.</p2>
                 </ul>
+              </ul>
           <RecipeInputModal />
           <RecipeListModal />
         </div>
@@ -65,9 +61,9 @@ class App extends Component {
               <ul class="copyright">
                 <p> © Fork, 2018 All rights are given for free. You're Welcome.</p>
               </ul>
+            </ul>
           </div>
         </div>
-      </div>
     )
   }
 }
