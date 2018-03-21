@@ -6,6 +6,8 @@ import CreateAcct from './createAcct';
 import Search from './search';
 import axios from 'axios';
 import RecipeInputModal from '../recipeInputModal/recipeInputModal';
+import RecipeListModal from '../recipeListModal/recipeListModal';
+import Profile from '../profile.js'
 
 export default class Menubuttons extends React.Component {
   constructor(props) {
@@ -32,9 +34,11 @@ export default class Menubuttons extends React.Component {
         <ButtonGroup>
           <CreateAcct login={this.login} />
           <Login login={this.login} />           
-          <Button>Search</Button>
           <RecipeInputModal />
+          <RecipeListModal />
           <Search search={this.search} />
+           
+        < Profile classname="Profile"/>
         </ButtonGroup>
        
       </div>

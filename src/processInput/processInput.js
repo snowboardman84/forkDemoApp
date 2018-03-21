@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import RecipeInput from '../recipeInput/recipeInput.js';
 import axios from 'axios';
-var jwt = require('jsonwebtoken');
+// var jwt = require('jsonwebtoken');
 
 export default class ProcessInput extends React.Component {
     constructor(props) {
