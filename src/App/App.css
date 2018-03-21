@@ -21,18 +21,39 @@
   cursor: crosshair; 
   opacity: .8;
 }
-
+.modal-title {
+  color: white;
+}
 .modal-header {
   background-color: rgb(93, 112, 251);
   image-rendering:  '../forkcircle.png'
 }
 .modal-content {
-  background-image:  url("../ingreds.png");
-  background-size: 120%;
+  background-image:  url("../marble.jpeg");
+  background-size: 180%;
   background-repeat: no-repeat;
+    color: black;
+    font-weight: 800;
+    border: solid rgb(93, 112, 251) 3px;
+    align-content: center;
+}
+
+
+.lowerButtons {
+  padding-top: 10px;
+  padding-left: 45%;
+  
+}
+p2{
+  align-items: center;
+}
+.btn.btn-secondary {
+  border: solid rgb(93, 112, 251) 3px;
+ 
+ 
 }
 .usernameText{
-  color:white;
+  color:black;
 }
 Input#usernameInput {
   opacity: .6;
@@ -43,33 +64,27 @@ input#passwordInput {
 input#password2Input {
   opacity: .6;
 }
+h {
+  color: white
+}
 b{
-  color:white;
+  color:black;
 }
 p {
- color: white;
+ color: black;
 }
+
+
 input {
   opacity: .6;
 }
-.footer-link {
-  
-  color: white;
-  text-align: center;
-  padding-right: 10%;
-}
-/* .footer-link:hover {
-  color: rgb(93, 112, 251);
-  cursor: pointer;
-}
-.footer-link:active {
-  color: red
-} */
 
 .copyright {
+  border: solid black 3px;
   font-size: 10px;
-  text-align: center;
-  padding-right: 10%;
+  color: white;
+  align-items: center;
+  
 }
 
 
@@ -104,13 +119,14 @@ input {
   float: right;
   margin-top: -20%;
   margin-right: 8%;
+  position: relative;
 }
 
 .carousel-inner {
-  padding-left: 16%;
+  padding-left: 20%;
   /*max-width: 100%;
   height: auto;*/
-  box-sizing: border-box;
+ 
   /*border: solid black 3px;*/
 }
 .carousel-inner:hover {
@@ -133,3 +149,9 @@ input {
 .routes:active {
   color: red;
 }
+
+h#title {
+  background-color: rgb(93, 112, 251);
+}
+
+

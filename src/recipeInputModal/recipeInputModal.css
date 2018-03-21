@@ -5,7 +5,8 @@
     width: 80vw;
 }
 button.btn.btn-danger {
-    border: solid black 2px;
     padding-left: 20px;
     position: center;
+    border: solid rgb(93, 112, 251);
+    border-radius:7px;
 }
