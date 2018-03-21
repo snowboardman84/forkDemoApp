@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+.profile {
+    width: 20%;
+    background-color: #5370ff;
+    padding: 2px;
+    margin: 2px;
+    border: soild black 3px;
+  }
+  
+.forkHeader {
+    width: 20%;
+    align-content: center;
+  }
+
+.profileFork {
+  width: 100%
+}

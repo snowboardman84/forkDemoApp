@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from "axios";
-import Menubuttons from './menuButtons';
+//import Menubuttons from './menuButtons';
 
 export default class CreateAcct extends React.Component {
   constructor(props) {
