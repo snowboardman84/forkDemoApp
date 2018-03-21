@@ -31,12 +31,12 @@ export default class RecipeInputModal extends React.Component {
   render() {
     return (
       <div>
-        <Button color="secondary" onClick={this.toggle}>Add New Recipe!</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <h id="title">Add new recipe:</h>
+        {/* <Button color="secondary" onClick={this.toggle}>Add New Recipe!</Button> */}
+        {/* <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}> */}
+          {/* <h id="title">Add new recipe:</h> */}
           <Input type='text' placeholder='Recipe name' onChange={this.handleTitleChange}/>
           <RecipeInput modalToggle={this.toggle} recipeTitle={this.state.title} />
-        </Modal>
+        {/* </Modal> */}
       </div>
     );
   }

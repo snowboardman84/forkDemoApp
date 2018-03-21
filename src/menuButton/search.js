@@ -27,58 +27,51 @@ export default class Search extends React.Component {
     }
 
     search() {
-        if (this.state.nestedModal === false) {
-            axios.post('/searchRecipe', { ingredients: this.state.ingredients }).then((result) => {
-                this.setState({
-                    results: result.data,
-                    style: {
-                        color: "red",
+        //if (this.state.nestedModal === false) {
 
-                    }
-                })
+            axios.post('/searchRecipe', { ingredient: this.state.query }).then((result) => {
+                // this.setState({
+                //     results: result.data,
+                //     style: {
+                //         color: "red",
+
+                //     }
+                // })
             })
-        }
+            
+        //}
     }
 
-    handleInputChange = () => {
+    handleInputChange = (e) => {
         this.setState({
-            query: this.search.value
-        }, () => {
-            if (this.state.query && this.state.query.length > 1) {
-                if (this.state.query.length % 2 === 0) {
-                    this.search()
-                }
-            } else if (!this.state.query) {
-            }
-        })
+            query: e.target.value
+        });
     }
 
     render() {
         return (
             <div>
-                <Button id="searchBtn" onClick={this.toggle}>Search{this.props.buttonLabel}</Button>
+                {/* <Button id="searchBtn" onClick={this.toggle}>Search{this.props.buttonLabel}</Button>
                 <Modal id="loginModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Welcome!</ModalHeader>
-                    <ModalBody>
+                    <ModalHeader toggle={this.toggle}>Search For Ingredients</ModalHeader>
+                    <ModalBody> */}
                         <div id="inputFieldsSearch">
-                            <form>
-                                <input
-                                    placeholder="Search"
-                                    ref={input => this.search = input}
-                                    onChange={this.handleInputChange}
+                            <input
+                                value={this.state.query}
+                                placeholder="Search"
+                                onChange={this.handleInputChange}
                                 />
-                                <p>{this.state.query}</p>
-                            </form>
+                            <Button onClick={this.search}>search</Button>
                         </div>
-                        <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.search} onClosed={this.state.closeAll ? this.toggle : undefined}>
+                        {/* <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.search} onClosed={this.state.closeAll ? this.toggle : undefined}>
                             <ModalHeader>{this.state.message}</ModalHeader>
                             <ModalFooter>
                                 <Button color="secondary" onClick={this.toggleAll}>Ok</Button>
                             </ModalFooter>
                         </Modal>
 
-                    </ModalBody>
-                </Modal>
+                    </ModalBody> 
+                </Modal> */}
 
             </div>
 

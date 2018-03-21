@@ -17,7 +17,7 @@ export default class Login extends React.Component {
       passwordType: "password"
     };
     this.toggle = this.toggle.bind(this);
-    this.loginToggle = this.loginToggle.bind(this);
+    this.login = this.login.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
     this.onUserChange = this.onUserChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -29,7 +29,7 @@ export default class Login extends React.Component {
     });
   }
 
-  loginToggle() {
+  login() {
     this.props.login(this.state.userName, this.state.password).then((result) => {
       this.setState({
         loginMessage: result,
@@ -79,11 +79,11 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <Button id="loginBtn" onClick={this.toggle}>Log In{this.props.buttonLabel}
+        {/* <Button id="loginBtn" onClick={this.toggle}>Log In{this.props.buttonLabel}
         </Button>
         <Modal id="loginModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Welcome!</ModalHeader>
-          <ModalBody>
+          <ModalBody> */}
             <div id="inputFieldsLogin">
               <b className="usernameText">Username:</b><br />
               <input type="text" name="username" placeholder="Username" value={this.state.userName} onChange={this.onUserChange} />
@@ -93,9 +93,10 @@ export default class Login extends React.Component {
               <br />
               <input type={this.state.passwordType} name="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
               <br />
-              <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>
+              <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>            
+              <Button color="secondary" onClick={this.login}>Log In</Button>
             </div>
-            <Modal isOpen={this.state.nestedModal} toggle={this.loginToggle} onClosed={this.state.closeAll ? this.toggle : undefined}>
+            {/* <Modal isOpen={this.state.nestedModal} toggle={this.loginToggle} onClosed={this.state.closeAll ? this.toggle : undefined}>
               <ModalHeader>{this.state.loginMessage}</ModalHeader>
               <ModalFooter>
                 <Button color="secondary" onClick={this.toggleAll}>Ok</Button>
@@ -103,10 +104,9 @@ export default class Login extends React.Component {
             </Modal>
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.loginToggle}>Log In</Button>
             
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }
