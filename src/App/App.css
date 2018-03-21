@@ -133,3 +133,19 @@ input {
 .routes:active {
   color: red;
 }
+
+.Profile {
+  width: 20%;
+  background-color: #5370ff;
+  padding: 2px;
+  margin: 2px;
+  border: 2px;
+}
+
+.Form {
+  width: 20%;
+  background-color: #5370ff;
+  padding: 2px;
+  margin: 2px;
+  border: 2px;
+}

@@ -1,0 +1,23 @@
+.form {
+text-align: center;
+background-color: blueviolet;
+}
+
+.profileForm {
+width: 20%;
+height: 40%;
+background-color: hsl(230, 100%, 66%);
+padding: 5px;
+/* margin: 10px; moves obj out from side*/
+border: 1000px; /*does nothing*/
+font-size: 1pt;
+}
+
+.formy {
+    align-self: center;
+    background-color: tomato;
+}
+
+.header {
+width: 100%;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Menubuttons from './menuButtons';
 
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -15,16 +16,13 @@ export default class Login extends React.Component {
       loginCheck: false,
       passwordType: "password"
     };
-
     this.toggle = this.toggle.bind(this);
     this.loginToggle = this.loginToggle.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
     this.onUserChange = this.onUserChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.showPassword = this.showPassword.bind(this);
-
   }
-
   toggle() {
     this.setState({
       modal: !this.state.modal
@@ -106,6 +104,7 @@ export default class Login extends React.Component {
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.loginToggle}>Log In</Button>
+            
           </ModalFooter>
         </Modal>
       </div>

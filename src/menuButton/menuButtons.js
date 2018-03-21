@@ -3,6 +3,7 @@ import { Button, ButtonGroup } from 'reactstrap';
 import './menuButtons.css';
 import Login from './login';
 import CreateAcct from './createAcct';
+import Search from './search';
 import axios from 'axios';
 
 export default class Menubuttons extends React.Component {
@@ -30,7 +31,7 @@ export default class Menubuttons extends React.Component {
         <ButtonGroup>
           <CreateAcct login={this.login} />
           <Login login={this.login} />           
-          <Button>Search</Button>
+          <Search search={this.search} />
         </ButtonGroup>
       </div>
     );
