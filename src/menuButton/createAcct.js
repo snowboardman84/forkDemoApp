@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from "axios";
-//import Menubuttons from './menuButtons';
+import Menubuttons from './menuButtons';
 
 export default class CreateAcct extends React.Component {
   constructor(props) {
@@ -124,10 +124,10 @@ export default class CreateAcct extends React.Component {
   render() {
     return (
       <div >
-        <Button id="createAcctBtn" onClick={this.toggle}>Create Account{this.props.buttonLabel}</Button>
-        <Modal id="createAcctModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        {/* <Button id="createAcctBtn" onClick={this.toggle}>Create Account{this.props.buttonLabel}</Button> */}
+        {/* <Modal id="createAcctModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Welcome!</ModalHeader>
-          <ModalBody>
+          <ModalBody> */}
             <div id="inputCreateAccount">
               <b className="usernameText">Username:</b><br />
               <input id="usernameInput" type="text" name="username" placeholder="Username" value={this.state.userName} onChange={this.onUserChange} />
@@ -140,8 +140,9 @@ export default class CreateAcct extends React.Component {
               <input type={this.state.passwordType} name="password2" placeholder="Re-enter password" value={this.state.password2} onChange={this.onPassword2Change} />
               <br />
               <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>
+              <Button color="secondary" onClick={this.createAcct}>Create Account</Button>
             </div>
-            <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.createAcct} onClosed={this.state.closeAll ? this.toggle : undefined}>
+            {/* <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.createAcct} onClosed={this.state.closeAll ? this.toggle : undefined}>
               <ModalHeader>{this.state.message}</ModalHeader>
               <ModalFooter>
                 <Button color="secondary" onClick={this.toggleAll}>Ok</Button>
@@ -150,8 +151,8 @@ export default class CreateAcct extends React.Component {
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.createAcct}>Create Account</Button>
-          </ModalFooter>
-        </Modal>
+          </ModalFooter> 
+        </Modal> */}
       </div>
     );
   }

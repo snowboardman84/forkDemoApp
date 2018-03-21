@@ -23,10 +23,10 @@ export default class RecipeListModal extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>View Recipes</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        {/* <Button color="danger" onClick={this.toggle}>View Recipes</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}> */}
           <RecipeList />
-        </Modal>
+        {/* </Modal> */}
       </div>
     );
   }
