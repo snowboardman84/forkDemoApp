@@ -3,6 +3,7 @@ import { Button, ButtonGroup } from 'reactstrap';
 import './menuButtons.css';
 import Login from './login';
 import CreateAcct from './createAcct';
+import Search from './search';
 import axios from 'axios';
 import RecipeInputModal from '../recipeInputModal/recipeInputModal';
 
@@ -15,10 +16,12 @@ export default class Menubuttons extends React.Component {
     };
     this.login = this.login.bind(this);
   }
+
   login(userName, password) {
     return new Promise((resolve, reject)=>{
       axios.post('/loginData', {userName , password}).then((result) => {
       resolve(result.data.message);
+      localStorage.setItem('token', result.data.myToken);
     })
   })
 }
@@ -31,6 +34,7 @@ export default class Menubuttons extends React.Component {
           <Login login={this.login} />           
           <Button>Search</Button>
           <RecipeInputModal />
+          <Search search={this.search} />
         </ButtonGroup>
        
       </div>
