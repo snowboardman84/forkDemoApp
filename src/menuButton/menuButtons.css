@@ -1,7 +1,8 @@
 .buttons {
     float: right;
-    border: solid rgb(93, 112, 251);
-    border-radius:7px;
+    border: solid rgb(93, 112, 251) 3px;
+    border-radius: 3px;
     text-decoration-color:  rgb(93, 112, 251);
     background-color: rgb(93, 112, 251);
+    position: relative;
 }

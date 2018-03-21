@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import logo from '../forkcircle.png';
 import './App.css';
+import Menubuttons from '../menuButton/menuButtons.js';
+import RecipeInputModal from '../recipeInputModal/recipeInputModal.js';
+import Spinner from '../spinThing.js';
+import Contact from '../Us/contact.js';
+import About from '../Us/aboutUs.js'
+
+
+
 import Menubuttons from '../menuButton/menuButtons.js'
 import RecipeInputModal from '../recipeInputModal/recipeInputModal.js'
 //import backgroundImage from '../foodwallpaper.jpg';
@@ -23,6 +31,24 @@ class App extends Component {
         </p>
         <div className="Menubuttons">
           < Menubuttons />
+          {/* <RecipeInputModal /> */}
+        </div>
+        < Spinner className="Spin" />
+        <div className="lowerButtons">
+          <div>
+            < Contact />
+            <div />
+            <br />
+            <div>
+              < About />
+            </div>
+          </div>
+          <br />
+          <div >
+              <ul>
+                <ul >
+                  <p2 class="copyright"> © Fork, 2018 All rights are given for free. Your Welcome.</p2>
+                </ul>
           <RecipeInputModal />
           <RecipeListModal />
         </div>
@@ -39,12 +65,10 @@ class App extends Component {
               <ul class="copyright">
                 <p> © Fork, 2018 All rights are given for free. You're Welcome.</p>
               </ul>
-            </ul>
+          </div>
+        </div>
       </div>
-
-
     )
   }
 }
-
 export default App;
