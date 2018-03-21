@@ -8,6 +8,7 @@ import Example from '../spinThing.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import BasicExample from '../Router.js';
 import Profile from '../profile.js';
+import { render } from 'react-dom'
 
 class App extends Component {
   render() {
@@ -22,9 +23,9 @@ class App extends Component {
         <div className="Menubuttons">
           < Menubuttons />
           <RecipeInputModal />
-          
         </div>
-        {/* < Profile classname="Profile"/> */}
+        
+        < Profile classname="Profile"/>
         < Example  className="Spin"/>
         <div>
           <br/>
@@ -34,7 +35,7 @@ class App extends Component {
         <br />
             <ul>
               <ul class="copyright">
-                <p> © Fork, 2018 All rights are given for free. Your Welcome.</p>
+                <p> © Fork, 2018 All rights are given for free. You're Welcome.</p>
               </ul>
             </ul>
       </div>

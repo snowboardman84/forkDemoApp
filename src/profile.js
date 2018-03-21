@@ -19,6 +19,7 @@ export default class Profile extends React.Component {
         <FormGroup>
           <Label for="">Recipes Submitted</Label>
           <Input type="submissions" name="submissions" id="submissions" placeholder="# recipes submitted??" />
+          <img src={fork}  alt="FORK" className="profileFork"/>
         </FormGroup>
       </Form>
     );
