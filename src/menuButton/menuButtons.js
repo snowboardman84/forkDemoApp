@@ -15,10 +15,12 @@ export default class Menubuttons extends React.Component {
     };
     this.login = this.login.bind(this);
   }
+
   login(userName, password) {
     return new Promise((resolve, reject)=>{
       axios.post('/loginData', {userName , password}).then((result) => {
       resolve(result.data.message);
+      localStorage.setItem('token', result.data.myToken);
     })
   })
 }

@@ -7,6 +7,7 @@ import RecipeInputModal from '../recipeInputModal/recipeInputModal.js'
 import Example from '../spinThing.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import BasicExample from '../Router.js';
+import RecipeListModal from '../recipeListModal/recipeListModal'
 import Profile from '../profile.js';
 import { render } from 'react-dom'
 
@@ -23,6 +24,7 @@ class App extends Component {
         <div className="Menubuttons">
           < Menubuttons />
           <RecipeInputModal />
+          <RecipeListModal />
         </div>
         
         < Profile classname="Profile"/>
