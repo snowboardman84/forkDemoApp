@@ -7,7 +7,6 @@ export default class Profile extends React.Component {
   render() {
     return (
       <Form className="profile">
-        <img src={fork}  alt="FORK" className="profileFork"/>
         <FormGroup>
           <Label for="profileName">Username</Label>
           <Input type="profileName" name="profileName" id="profileName" placeholder="Username Goes Here" />
@@ -19,7 +18,6 @@ export default class Profile extends React.Component {
         <FormGroup>
           <Label for="">Recipes Submitted</Label>
           <Input type="submissions" name="submissions" id="submissions" placeholder="# recipes submitted??" />
-          <img src={fork}  alt="FORK" className="profileFork"/>
         </FormGroup>
       </Form>
     );

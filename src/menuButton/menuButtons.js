@@ -105,7 +105,8 @@ export default class Menubuttons extends React.Component {
         <ModalNotification notificationColor={this.state.notificationColor} notificationMessage={this.state.notificationMessage} isNotificationOpen={this.state.isNotificationOpen} closeAlert={this.closeAlert} />
         <div className='buttons'>
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>{this.state.selectedButtonLabel}<Button color="secondary" onClick={this.closeModal}>Close</Button>
+            <ModalHeader toggle={this.toggle}>{this.state.selectedButtonLabel}
+            <Button className="closeButton" color="caution" onClick={this.closeModal}>Close</Button>
             </ModalHeader>
             <ModalBody>
               {component}
@@ -113,7 +114,6 @@ export default class Menubuttons extends React.Component {
           </Modal>
           <ButtonGroup>
             {menuButtons}
-            < Profile classname="Profile" />
           </ButtonGroup>
         </div>
       </div>

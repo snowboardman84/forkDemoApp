@@ -2,21 +2,24 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    align-self: block;
+    width: auto;
+    display: flex;
+    align-self: center;
   }
   
 .profile {
-    width: 20%;
-    background-color: #5370ff;
-    padding: 2px;
-    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    background-color: #c6a530;
+    opacity: .8;
+    padding: -2px;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin: 2px; */
     border: soild black 3px;
-  }
-  
-.forkHeader {
-    width: 20%;
-    align-content: center;
-  }
+    width: 50%;
 
-.profileFork {
-  width: 100%
-}
+  }
+ 
