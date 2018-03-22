@@ -67,7 +67,7 @@ export default class RecipeInput extends React.Component {
                     </Col>
                     <Col id="process">
                         <div id="container">
-                            <ProcessInput handleSubmit={this.handleSubmit} ingredients={this.state.ingredients} modalToggle={this.props.modalToggle} recipeTitle={this.props.recipeTitle}/>
+                            <ProcessInput handleSubmit={this.handleSubmit} ingredients={this.state.ingredients} modalToggle={this.props.modalToggle} recipeTitle={this.props.recipeTitle} setNote={this.props.setNote} closeModal={this.props.closeModal}/>
                         </div>
                     </Col>
                 </FormGroup>

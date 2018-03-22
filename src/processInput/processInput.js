@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import RecipeInput from '../recipeInput/recipeInput.js';
 import axios from 'axios';
+import MenuButtons from '../menuButton/menuButtons';
 // var jwt = require('jsonwebtoken');
 
 export default class ProcessInput extends React.Component {
@@ -64,9 +65,9 @@ export default class ProcessInput extends React.Component {
             ingredients: this.props.ingredients, 
             process: this.state.process 
         }).then((result) => {
-            alert(result.data.message);
+            this.props.setNote(result.data.message, "success", this.state.isNotificationOpen);        
+            this.props.closeModal();
         })
-        this.props.modalToggle; //why no work?
     }
 
 render() {

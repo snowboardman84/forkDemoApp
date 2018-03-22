@@ -9,151 +9,98 @@ export default class CreateAcct extends React.Component {
     console.log(props);
     this.state = {
       modal: false,
-      nestedModal: false,
       closeAll: false,
       userName: '',
       password: '',
-      password2: "",
+      password2: '',
       passwordType: "password",
-      message: "placeholder",
-      style: {
-        color: "black"
-      },
-      createAcctCheck: false,
     };
-    this.toggle = this.toggle.bind(this);
-    this.toggleAll = this.toggleAll.bind(this);
     this.onUserChange = this.onUserChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onPassword2Change = this.onPassword2Change.bind(this);
     this.showPassword = this.showPassword.bind(this);
     this.createAcct = this.createAcct.bind(this);
   }
-  
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-// This was toggleNested
+
   createAcct() {
     if (this.state.password === this.state.password2) {
-      if (this.state.nestedModal === false) {
-        axios.post('/createAcctData', { userName: this.state.userName, password: this.state.password}).then((result) => {
-            this.setState({
-              style: {
-                color: "black"
-              },
-              message: result.data.message,
-              nestedModal: !this.state.nestedModal,
-              closeAll: false,
-              userData: {
-                userName: '',
-                password: ''
-              }
-            });
-          })
-        this.props.login(this.state.userName, this.state.password).then((result) => {
-        })
-      } else {
+      axios.post('/createAcctData', { userName: this.state.userName, password: this.state.password }).then((result) => {
         this.setState({
-          nestedModal: !this.state.nestedModal,
+          style: {
+            color: "black"
+          },
+          modalNotificationMessage: result.data.message,
           closeAll: false,
-          userName: '',
-          password: '',
+          userData: {
+            userName: '',
+            password: ''
+          }
         });
-      }
+        this.props.setNote(result.data.message, "success", this.state.isNotificationOpen);        
+        this.props.closeModal();
+      })
+      this.props.login(this.state.userName, this.state.password).then((result) => {
+      })
     } else {
       this.setState({
         message: "Passwords must match",
         style: {
-          color: "red"
+          color: "success"
         },
-        nestedModal: !this.state.nestedModal,
         closeAll: false,
         password: "",
         password2: ""
       })
-    }
-  }
+    }}
 
-  toggleAll() {
-    if (this.state.message === "Passwords must match") {
+    onUserChange = (e) => {
       this.setState({
-        nestedModal: !this.state.nestedModal,
-        closeAll: false,
-      });
-    } else {
-      this.setState({
-        nestedModal: !this.state.nestedModal,
-        closeAll: true,
+        userName: (e.target.value)
       });
     }
-  }
 
-  onUserChange = (e) => {
-    this.setState({
-      userName: (e.target.value)
-    });
-  }
-
-  onPasswordChange = (e) => {
-    this.setState({
-      password: (e.target.value)
-    });
-  }
-
-  onPassword2Change = (e) => {
-    this.setState({
-      password2: (e.target.value)
-    });
-  }
-
-  showPassword() {
-    if (this.state.passwordType === "password" || this.state.passwordType === "password2") {
+    onPasswordChange = (e) => {
       this.setState({
-        passwordType: "text",
-      })
-    } else {
-      this.setState({
-        passwordType: "password",
-      })
+        password: (e.target.value)
+      });
     }
-  }
 
-  render() {
-    return (
-      <div >
-        {/* <Button id="createAcctBtn" onClick={this.toggle}>Create Account{this.props.buttonLabel}</Button> */}
-        {/* <Modal id="createAcctModal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Welcome!</ModalHeader>
-          <ModalBody> */}
-            <div id="inputCreateAccount">
-              <b className="usernameText">Username:</b><br />
-              <input id="usernameInput" type="text" name="username" placeholder="Username" value={this.state.userName} onChange={this.onUserChange} />
-              <br />
-              <br />
-              <b>Password:</b>
-              <br />
-              <input type={this.state.passwordType} name="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
-              <br />
-              <input type={this.state.passwordType} name="password2" placeholder="Re-enter password" value={this.state.password2} onChange={this.onPassword2Change} />
-              <br />
-              <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>
-              <Button color="secondary" onClick={this.createAcct}>Create Account</Button>
-            </div>
-            {/* <Modal style={this.state.style} isOpen={this.state.nestedModal} toggle={this.createAcct} onClosed={this.state.closeAll ? this.toggle : undefined}>
-              <ModalHeader>{this.state.message}</ModalHeader>
-              <ModalFooter>
-                <Button color="secondary" onClick={this.toggleAll}>Ok</Button>
-              </ModalFooter>
-            </Modal>
-          </ModalBody>
-          <ModalFooter>
+    onPassword2Change = (e) => {
+      this.setState({
+        password2: (e.target.value)
+      });
+    }
+
+    showPassword() {
+      if (this.state.passwordType === "password" || this.state.passwordType === "password2") {
+        this.setState({
+          passwordType: "text",
+        })
+      } else {
+        this.setState({
+          passwordType: "password",
+        })
+      }
+    }
+
+    render() {
+      return (
+        <div >
+          <div id="inputCreateAccount">
+            <b className="usernameText">Username:</b><br />
+            <input id="usernameInput" type="text" name="username" placeholder="Username" value={this.state.userName} onChange={this.onUserChange} />
+            <br />
+            <br />
+            <b>Password:</b>
+            <br />
+            <input type={this.state.passwordType} name="password" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange} />
+            <br />
+            <input type={this.state.passwordType} name="password2" placeholder="Re-enter password" value={this.state.password2} onChange={this.onPassword2Change} />
+            <br />
+            <p><input type="checkbox" onClick={this.showPassword} /> Show password</p>
             <Button color="secondary" onClick={this.createAcct}>Create Account</Button>
-          </ModalFooter> 
-        </Modal> */}
-      </div>
-    );
+          </div>
+        </div>
+      );
+    }
   }
-}

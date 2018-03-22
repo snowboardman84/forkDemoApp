@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, FormGroup, Lab
 import RecipeInput from '../recipeInput/recipeInput.js'
 import ProcessInput from '../processInput/processInput.js'
 import './recipeInputModal.css';
+import Menubuttons from '../menuButton/menuButtons';
 
 export default class RecipeInputModal extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ export default class RecipeInputModal extends React.Component {
         {/* <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}> */}
           {/* <h id="title">Add new recipe:</h> */}
           <Input type='text' placeholder='Recipe name' onChange={this.handleTitleChange}/>
-          <RecipeInput modalToggle={this.toggle} recipeTitle={this.state.title} />
+          <RecipeInput modalToggle={this.toggle} recipeTitle={this.state.title} setNote={this.props.setNote} closeModal={this.props.closeModal}/>
         {/* </Modal> */}
       </div>
     );

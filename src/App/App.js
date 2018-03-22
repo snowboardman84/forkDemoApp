@@ -18,7 +18,7 @@ export default class App extends Component {
         <div className="Menubuttons">
           < Menubuttons />
         </div>
-        < Spinner className="Spin" />
+        {/* < Spinner className="Spin" /> */}
         <div className="lowerButtons">
             < Contact />
             <br />
