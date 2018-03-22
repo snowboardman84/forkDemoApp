@@ -25,18 +25,31 @@ export default class App extends Component {
         <div>
                 < Profile classname="Profile"/>
         </div>
+        <br />
         <div className="Menubuttons">
           < Menubuttons />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
         {/* < Spinner className="Spin" /> */}
         <div className="lowerButtons">
+        <br />
               < Contact /> < About />
             <br />
           </div>
           <br />
           <div >
+            <br />
               <ul>
                 <p2 class="copyright"> © Fork | 2018 All rights are given for free. You're Welcome.</p2>
+              <br />
+              <br />
               </ul>
           </div>
       </div>

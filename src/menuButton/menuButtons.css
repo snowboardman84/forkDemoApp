@@ -15,3 +15,17 @@ body {
     display: flex;
     justify-content: center;
 }
+
+button.closeButton {
+    display: flex;
+    /* flex-direction: row-reverse; */
+    justify-content: flex-end;
+    
+}
+
+.modal-title {
+    width: 100%;
+    display: flex;
+    align-content: space-between;
+    border: solid black 3px;
+}
