@@ -5,6 +5,7 @@ background-color: #c6a530;
 .buttons {
     display: flex;
     justify-content: center;
+    
     border-radius: 3px;
     position: relative;
     flex-direction: row-reverse;
