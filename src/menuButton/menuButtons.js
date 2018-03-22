@@ -97,7 +97,7 @@ export default class Menubuttons extends React.Component {
 
         <ButtonGroup>
           {menuButtons}
-        < Profile classname="Profile"/>
+        {/* < Profile classname="Profile"/> */}
         </ButtonGroup>
        
       </div>
