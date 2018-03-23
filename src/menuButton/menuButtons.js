@@ -6,9 +6,11 @@ import Search from './search';
 import axios from 'axios';
 import RecipeInputModal from '../recipeInputModal/recipeInputModal';
 import RecipeListModal from '../recipeListModal/recipeListModal';
-import Profile from '../profile.js'
-import { Button,ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Profile from '../profile.js';
+import { Button, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ForkMenuButton from "./ForkMenuButton";
+import ModalNotification from "./modalNotification";
+import ProcessInput from '../processInput/processInput';
 
 export default class Menubuttons extends React.Component {
   constructor(props) {
@@ -16,90 +18,118 @@ export default class Menubuttons extends React.Component {
     this.state = {
       isModalOpen: false,
       test: "test",
-      selectedButtonLabel: ""
+      selectedButtonLabel: " ",
+      notificationMessage: " ",
+      notificationColor: 'success',
+      isNotificationOpen: false,
     };
 
-    this.menuButtonLabels = [
+    this.loginButtonLabels = [
       "Create Account",
       "Login",
+    ]
+
+    this.menuButtonLabels = [
       "Add New Recipe",
       "View Recipe",
       "Search"
     ]
 
     this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this)
-    this.mapLabelToButton = this.mapLabelToButton.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.mapLabelToComponent = this.mapLabelToComponent.bind(this);
     this.login = this.login.bind(this);
+    this.setNote = this.setNote.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
+  }
+
+  setNote(message, color, isOpen) {
+    this.setState({
+      notificationMessage: message,
+      notificationColor: color,
+      isNotificationOpen: isOpen,
+    })
+  }
+
+  closeAlert() {
+    this.setState({
+      isNotificationOpen: false
+    })
   }
 
   login(userName, password) {
-    return new Promise((resolve, reject)=>{
-      axios.post('/loginData', {userName , password}).then((result) => {
-
-      resolve(result.data.message);
-      this.setState({
-        isModalOpen:false
-        // to make notifications work, it's probably something like so:
-        // notificationMessage:result.data.message
+    return new Promise((resolve, reject) => {
+      axios.post('/loginData', { userName, password }).then((result) => {
+        resolve(result.data.message);
+        localStorage.setItem('token', result.data.myToken);
+        if (result.data.myToken) {
+          this.props.loggedIn();
+        }
       })
-      localStorage.setItem('token', result.data.myToken);
     })
-  })
-}
+  }
 
-  mapLabelToButton(label){
-    switch(label){
+  mapLabelToComponent(label) {
+    switch (label) {
       case "Create Account":
-        return <CreateAcct login={this.login}/>
+        return <CreateAcct closeModal={this.closeModal} login={this.login} setNote={this.setNote} />
       case "Login":
-        return <Login login={this.login}/>
+        return <Login closeModal={this.closeModal} login={this.login} setNote={this.setNote} />
       case "Add New Recipe":
-        return <RecipeInputModal />
+        return <RecipeInputModal closeModal={this.closeModal} setNote={this.setNote} />
       case "View Recipe":
-        return <RecipeListModal />
+        return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} />
       case "Search":
-        return <Search />
+        return <Search closeModal={this.closeModal} setNote={this.setNote} />
     }
   }
 
-  closeModal(){
+  closeModal() {
     this.setState({
-      isModalOpen:false
+      isModalOpen: false
     })
   }
 
-  openModal(label){
+  openModal(label) {
     this.setState({
-      isModalOpen:!this.state.isModalOpen,
+      isModalOpen: !this.state.isModalOpen,
       selectedButtonLabel: label
     })
   }
 
   render() {
 
-    let component = this.mapLabelToButton(this.state.selectedButtonLabel);
-    let menuButtons = this.menuButtonLabels.map((l)=>{
-      return (
-        <ForkMenuButton buttonLabel={l} openModal={this.openModal}/>
-      )
-    });
+    let component = this.mapLabelToComponent(this.state.selectedButtonLabel);
+
+    if (this.props.isLoggedIn) {
+      var menuButtons = this.menuButtonLabels.map((l) => {
+        return (
+          <ForkMenuButton buttonLabel={l} openModal={this.openModal} /> 
+        )}) 
+    } else {
+      var menuButtons = this.loginButtonLabels.map((l) => {
+        return (
+          <ForkMenuButton buttonLabel={l} openModal={this.openModal} />
+        )
+      })
+    }
 
     return (
-      <div className='buttons'>
-         <Modal isOpen={this.state.isModalOpen} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>{this.state.selectedButtonLabel}<Button color="secondary" onClick={this.closeModal}>Close</Button>
-</ModalHeader>
-          <ModalBody>
-            {component}
-          </ModalBody> 
-        </Modal>
-
-        <ButtonGroup>
-          {menuButtons}
-        < Profile classname="Profile"/>
-        </ButtonGroup>
-       
+      <div>
+        <ModalNotification notificationColor={this.state.notificationColor} notificationMessage={this.state.notificationMessage} isNotificationOpen={this.state.isNotificationOpen} closeAlert={this.closeAlert} />
+        <div className='buttons'>
+          <Modal isOpen={this.state.isModalOpen} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>{this.state.selectedButtonLabel}
+              <Button className="closeButton" color="caution" onClick={this.closeModal}>Close</Button>
+            </ModalHeader>
+            <ModalBody>
+              {component}
+            </ModalBody>
+          </Modal>
+          <ButtonGroup>
+            {menuButtons}
+          </ButtonGroup>
+        </div>
       </div>
     );
   }

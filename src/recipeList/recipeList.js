@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Jumbotron, Button, Col, FormGroup } from 'reactstrap';
 import './recipeList.css';
 import ForkButton from '../forkButton/forkButton'
+import Menubuttons from '../menuButton/menuButtons';
 
 
 export default class ListRecipes extends Component {
@@ -17,7 +18,6 @@ export default class ListRecipes extends Component {
     componentDidMount() {
         axios.post('/listRecipes').then((result) => {
             this.setState({ recipeList: result.data });
-            debugger;
             console.log(`result = ${result.data.process}`);
         })
     }
@@ -56,7 +56,7 @@ export default class ListRecipes extends Component {
                                 </ol>
                             </Col>
                         </FormGroup>
-                        <ForkButton forkedRecipe={this.state.recipeList[i]} />
+                        <ForkButton forkedRecipe={this.state.recipeList[i]} setNote={this.props.setNote} closeModal={this.props.closeModal} />
                     </Jumbotron>
                 </div>
             )
