@@ -117,3 +117,9 @@ h#title {
   display:flex !important;
   justify-content: center !important;
 }
+
+.alert {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

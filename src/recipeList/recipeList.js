@@ -18,7 +18,6 @@ export default class ListRecipes extends Component {
     componentDidMount() {
         axios.post('/listRecipes').then((result) => {
             this.setState({ recipeList: result.data });
-            debugger;
             console.log(`result = ${result.data.process}`);
         })
     }

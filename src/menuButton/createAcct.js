@@ -6,7 +6,6 @@ import Menubuttons from './menuButtons';
 export default class CreateAcct extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       modal: false,
       closeAll: false,
@@ -38,19 +37,13 @@ export default class CreateAcct extends React.Component {
         });
         this.props.setNote(result.data.message, "success", this.state.isNotificationOpen);        
         this.props.closeModal();
-      })
-      this.props.login(this.state.userName, this.state.password).then((result) => {
+        this.props.login(this.state.userName, this.state.password).then((result) => {
+        })
       })
     } else {
-      this.setState({
-        message: "Passwords must match",
-        style: {
-          color: "success"
-        },
-        closeAll: false,
-        password: "",
-        password2: ""
-      })
+
+      this.props.setNote("Passwords must match", "danger", this.state.isNotificationOpen);  
+      this.props.closeModal();
     }}
 
     onUserChange = (e) => {

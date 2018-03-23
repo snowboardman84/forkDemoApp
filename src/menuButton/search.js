@@ -3,7 +3,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Jumbotron, FormGrou
 import axios from 'axios';
 import Menubuttons from './menuButtons';
 import ForkButton from '../forkButton/forkButton';
-import NoButtModal from './noButtModal';
 
 
 export default class Search extends React.Component {
@@ -14,7 +13,7 @@ export default class Search extends React.Component {
             closeAll: false,
             query: '',
             results: [],
-            ingredients: [],
+            ingredients: '',
             searchResults: [],
         };
         this.search = this.search.bind(this);
@@ -25,16 +24,13 @@ export default class Search extends React.Component {
     search() {
         axios.post('/searchRecipe', { ingredients: this.state.query }).then((result) => {
             if (result.data.message) {
-                this.props.setNote(result.data.message, "success", this.state.isNotificationOpen);
+                this.props.setNote("No recipe found", "success", this.state.isNotificationOpen);
                 this.props.closeModal();
             } else {
-                this.setState= {
+                this.setState ({
                     searchResults: result.data,
-
-                }
-                this.props.closeModal();
-                this.props.toggle();
-            }          
+                })
+            }
         })
     }
 
@@ -44,49 +40,48 @@ export default class Search extends React.Component {
         });
     }
     returnRecipeList() {
-    return this.state.searchResults.map((value, i) => {
-        return (
-            <div key={i}>
-                <Jumbotron>
-                    <h1 className="display">{this.state.searchResults[i].title}</h1>
-                    <FormGroup className="row1" row>
-                        <Col>
-                            <h2 className="colHeader">Ingredients:</h2>
-                        </Col>
-                        <Col>
-                            <h2 className="colHeader">Process:</h2>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup className="row2" row>
-                        <Col className="recipe">
-                            <ul className="lead">
-                                {this.state.searchResults[i].ingredients.map((value, x) => {
-                                    return (
-                                        <li key={x}>{this.state.searchResults[i].ingredients[x]}</li>
-                                    )
-                                })}
-                            </ul>
-                        </Col>
-                        <Col className="recipe">
-                            <ol className="lead">
-                                {this.state.searchResults[i].process.map((value, y) => {
-                                    return (
-                                        <li key={y}>{this.state.searchResults[i].process[y]}</li>
-                                    )
-                                })}
-                            </ol>
-                        </Col>
-                    </FormGroup>
-                    <ForkButton forkedRecipe={this.state.searchResults[i]} setNote={this.props.setNote} closeModal={this.props.closeModal} />
-                </Jumbotron>
-            </div>
-        )
-    })
-}
-render() {
+        return this.state.searchResults.map((value, i) => {
+            return (
+                <div key={i}>
+                    <Jumbotron>
+                        <h1 className="display">{this.state.searchResults[i].title}</h1>
+                        <FormGroup className="row1" row>
+                            <Col>
+                                <h2 className="colHeader">Ingredients:</h2>
+                            </Col>
+                            <Col>
+                                <h2 className="colHeader">Process:</h2>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup className="row2" row>
+                            <Col className="recipe">
+                                <ul className="lead">
+                                    {this.state.searchResults[i].ingredients.map((value, x) => {
+                                        return (
+                                            <li key={x}>{this.state.searchResults[i].ingredients[x]}</li>
+                                        )
+                                    })}
+                                </ul>
+                            </Col>
+                            <Col className="recipe">
+                                <ol className="lead">
+                                    {this.state.searchResults[i].process.map((value, y) => {
+                                        return (
+                                            <li key={y}>{this.state.searchResults[i].process[y]}</li>
+                                        )
+                                    })}
+                                </ol>
+                            </Col>
+                        </FormGroup>
+                        <ForkButton forkedRecipe={this.state.searchResults[i]} setNote={this.props.setNote} closeModal={this.props.closeModal} />
+                    </Jumbotron>
+                </div>
+            )
+        })
+    }
+    render() {
         return (
             <div>
-                {this.returnRecipeList()}
 
                 <div id="inputFieldsSearch">
                     <input
@@ -96,7 +91,7 @@ render() {
                     />
                     <Button onClick={this.search}>search</Button>
                 </div>
-
+                {this.returnRecipeList()}
 
             </div>
 
