@@ -26,6 +26,5 @@ button.closeButton {
 .modal-title {
     width: 100%;
     display: flex;
-    align-content: space-between;
-    border: solid black 3px;
+    justify-content: space-between;
 }

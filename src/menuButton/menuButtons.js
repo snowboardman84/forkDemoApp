@@ -24,9 +24,12 @@ export default class Menubuttons extends React.Component {
       isNotificationOpen: false,
     };
 
-    this.menuButtonLabels = [
+    this.loginButtonLabels = [
       "Create Account",
       "Login",
+    ]
+
+    this.menuButtonLabels = [
       "Add New Recipe",
       "View Recipe",
       "Search"
@@ -59,6 +62,9 @@ export default class Menubuttons extends React.Component {
       axios.post('/loginData', { userName, password }).then((result) => {
         resolve(result.data.message);
         localStorage.setItem('token', result.data.myToken);
+        if (result.data.myToken) {
+          this.props.loggedIn();
+        }
       })
     })
   }
@@ -72,7 +78,7 @@ export default class Menubuttons extends React.Component {
       case "Add New Recipe":
         return <RecipeInputModal closeModal={this.closeModal} setNote={this.setNote} />
       case "View Recipe":
-        return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote}/>
+        return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} />
       case "Search":
         return <Search closeModal={this.closeModal} setNote={this.setNote} />
     }
@@ -94,11 +100,19 @@ export default class Menubuttons extends React.Component {
   render() {
 
     let component = this.mapLabelToComponent(this.state.selectedButtonLabel);
-    let menuButtons = this.menuButtonLabels.map((l) => {
-      return (
-        <ForkMenuButton buttonLabel={l} openModal={this.openModal} />
-      )
-    });
+
+    if (this.props.isLoggedIn) {
+      var menuButtons = this.menuButtonLabels.map((l) => {
+        return (
+          <ForkMenuButton buttonLabel={l} openModal={this.openModal} /> 
+        )}) 
+    } else {
+      var menuButtons = this.loginButtonLabels.map((l) => {
+        return (
+          <ForkMenuButton buttonLabel={l} openModal={this.openModal} />
+        )
+      })
+    }
 
     return (
       <div>
@@ -106,7 +120,7 @@ export default class Menubuttons extends React.Component {
         <div className='buttons'>
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>{this.state.selectedButtonLabel}
-            <Button className="closeButton" color="caution" onClick={this.closeModal}>Close</Button>
+              <Button className="closeButton" color="caution" onClick={this.closeModal}>Close</Button>
             </ModalHeader>
             <ModalBody>
               {component}

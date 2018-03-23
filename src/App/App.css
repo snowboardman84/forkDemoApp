@@ -111,10 +111,16 @@ h#title {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  background-color: rgb(240, 240, 175);
+  background-color: floralwhite;
 }
 
 .carousel-item.active, .carousel-item-next, .carousel-item-prev{
   display:flex !important;
   justify-content: center !important;
+}
+
+.alert {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

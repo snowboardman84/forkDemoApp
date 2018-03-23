@@ -9,11 +9,31 @@ import About from '../Us/aboutUs.js'
 import RecipeListModal from '../recipeListModal/recipeListModal'
 import Profile from '../profile.js';
 import { render } from 'react-dom'
-import ImageMapper from 'react-image-mapper';
-import LineChart from 'react-linechart';
+// import ImageMapper from 'react-image-mapper';
+// import LineChart from 'react-linechart';
+
+
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+    }
+    this.loggedIn = this.loggedIn.bind(this);
+  }
+
+
+loggedIn() {
+  this.setState ({
+    isLoggedIn: true
+  })
+}
+
   render() {
+    // if (this.state.isLoggedIn) {
+    // var Profile = < Profile classname="Profile"/>
+    // }
     return (
       <div className="App">
         <img src={logo} className="fork_logo" alt="logo" usemap="#image-map"/>
@@ -22,12 +42,12 @@ export default class App extends Component {
             <area shape="rect" coords=",,," />
             <area shape="rect" coords=",,," />
           </map>
-        <div>
-                < Profile classname="Profile"/>
-        </div>
+        {/* <div>
+                {Profile}
+        </div> */}
         <br />
         <div className="Menubuttons">
-          < Menubuttons />
+          < Menubuttons isLoggedIn={this.state.isLoggedIn} loggedIn={this.loggedIn} />
           <br />
           <br />
           <br />
