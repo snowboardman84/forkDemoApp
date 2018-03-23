@@ -17,7 +17,6 @@ export default class ForkButton extends Component {
             token: token, 
         }).then((result) => {
             alert(result.data.message);
-            
         })
         //Wrap this in a promise? Resolve (once the new fork is created in the db) is to close the recipeList modal and open a new modal
         //with just the new fork displayed. 
