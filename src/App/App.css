@@ -18,13 +18,15 @@
 
 .modal-title {
   color: white;
+  display: flex;
+  justify-content: space-between;
+
 }
 .modal-header {
   background-color: #c6a530;
   image-rendering:  '../forkcircle.png'
 }
 .modal-content {
-  /* background-image:  url("../marble.jpeg"); */
   background-color: whitesmoke;
   opacity: .85;
   background-size: 180%;
@@ -109,8 +111,7 @@ h#title {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  background-color: floralwhite;
-
+  background-color: rgb(240, 240, 175);
 }
 
 .carousel-item.active, .carousel-item-next, .carousel-item-prev{
