@@ -1,6 +1,7 @@
 import React from 'react';
 import './menuButtons.css';
 import Login from './login';
+import Logout from './logout';
 import CreateAcct from './createAcct';
 import Search from './search';
 import axios from 'axios';
@@ -32,7 +33,8 @@ export default class Menubuttons extends React.Component {
     this.menuButtonLabels = [
       "Add New Recipe",
       "View Recipe",
-      "Search"
+      "Search",
+      "Logout"
     ]
 
     this.openModal = this.openModal.bind(this);
@@ -41,6 +43,7 @@ export default class Menubuttons extends React.Component {
     this.login = this.login.bind(this);
     this.setNote = this.setNote.bind(this);
     this.closeAlert = this.closeAlert.bind(this);
+
   }
 
   setNote(message, color, isOpen) {
@@ -69,6 +72,7 @@ export default class Menubuttons extends React.Component {
     })
   }
 
+
   mapLabelToComponent(label) {
     switch (label) {
       case "Create Account":
@@ -81,6 +85,8 @@ export default class Menubuttons extends React.Component {
         return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} />
       case "Search":
         return <Search closeModal={this.closeModal} setNote={this.setNote} />
+      case "Logout":
+        return <Logout closeModal={this.closeModal} logout={this.logout} setNote={this.setNote} />
     }
   }
 
@@ -104,8 +110,9 @@ export default class Menubuttons extends React.Component {
     if (this.props.isLoggedIn) {
       var menuButtons = this.menuButtonLabels.map((l) => {
         return (
-          <ForkMenuButton buttonLabel={l} openModal={this.openModal} /> 
-        )}) 
+          <ForkMenuButton buttonLabel={l} openModal={this.openModal} />
+        )
+      })
     } else {
       var menuButtons = this.loginButtonLabels.map((l) => {
         return (
