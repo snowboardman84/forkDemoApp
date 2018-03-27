@@ -1,6 +1,7 @@
 import React from 'react';
 import './menuButtons.css';
 import Login from './login';
+import Logout from './logout';
 import CreateAcct from './createAcct';
 import Search from './search';
 import axios from 'axios';
@@ -34,8 +35,9 @@ export default class Menubuttons extends React.Component {
     this.menuButtonLabels = [
       "My Forks",
       "Add New Recipe",
-      "View Recipes",
-      "Search"
+      "View Recipe",
+      "Search",
+      "Logout"
     ]
 
     this.openModal = this.openModal.bind(this);
@@ -46,6 +48,7 @@ export default class Menubuttons extends React.Component {
     this.closeAlert = this.closeAlert.bind(this);
     this.openForkModal = this.openForkModal.bind(this);
     this.closeForkModal = this.closeForkModal.bind(this);
+
   }
 
   setNote(message, color, isOpen) {
@@ -74,6 +77,7 @@ export default class Menubuttons extends React.Component {
     })
   }
 
+
   mapLabelToComponent(label) {
     switch (label) {
       case "Create Account":
@@ -88,6 +92,8 @@ export default class Menubuttons extends React.Component {
         return <Search closeModal={this.closeModal} setNote={this.setNote} />
       case "My Forks":
         return <ForkModal closeModal={this.closeModal} setNote={this.setNote} />
+      case "Logout":
+        return <Logout closeModal={this.closeModal} logout={this.logout} setNote={this.setNote} />
     }
   }
 
