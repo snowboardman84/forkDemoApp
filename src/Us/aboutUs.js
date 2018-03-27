@@ -6,16 +6,30 @@ class About extends React.Component {
     super(props);
     this.state = {
       modal: false
+      
     };
 
-    this.toggle = this.toggle.bind(this);
+    // this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  closeModal() {
     this.setState({
-      modal: !this.state.modal
-    });
+      isModalOpen: false
+    })
   }
+
+  openModal(label) {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen,
+      selectedButtonLabel: label
+    })
+  }
+
+  // toggle() {
+  //   this.setState({
+  //     modal: !this.state.modal
+  //   });
+  // }
 
   render() {
     return (

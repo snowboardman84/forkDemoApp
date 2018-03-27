@@ -11,6 +11,9 @@ import { Button, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter } from 
 import ForkMenuButton from "./ForkMenuButton";
 import ModalNotification from "./modalNotification";
 import ProcessInput from '../processInput/processInput';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
+
 
 export default class Menubuttons extends React.Component {
   constructor(props) {
@@ -22,6 +25,7 @@ export default class Menubuttons extends React.Component {
       notificationMessage: " ",
       notificationColor: 'success',
       isNotificationOpen: false,
+      dropdownOpen: false
     };
 
     this.loginButtonLabels = [
@@ -32,7 +36,8 @@ export default class Menubuttons extends React.Component {
     this.menuButtonLabels = [
       "Add New Recipe",
       "View Recipe",
-      "Search"
+      "Search",
+      // "Logout"
     ]
 
     this.openModal = this.openModal.bind(this);
@@ -41,6 +46,7 @@ export default class Menubuttons extends React.Component {
     this.login = this.login.bind(this);
     this.setNote = this.setNote.bind(this);
     this.closeAlert = this.closeAlert.bind(this);
+    this.navMenuToggle = this.navMenuToggle.bind(this);
   }
 
   setNote(message, color, isOpen) {
@@ -55,6 +61,12 @@ export default class Menubuttons extends React.Component {
     this.setState({
       isNotificationOpen: false
     })
+  }
+
+  navMenuToggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
 
   login(userName, password) {
@@ -81,6 +93,8 @@ export default class Menubuttons extends React.Component {
         return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} />
       case "Search":
         return <Search closeModal={this.closeModal} setNote={this.setNote} />
+      // case "Logout":
+      //   return "Thanks for stopping by!"
     }
   }
 
@@ -126,9 +140,16 @@ export default class Menubuttons extends React.Component {
               {component}
             </ModalBody>
           </Modal>
+          <Dropdown class ="dropDownNav" direction="left" isOpen={this.state.dropdownOpen} navMenuToggle={this.navMenuToggle}>
+      <DropdownToggle onClick={this.navMenuToggle} caret size="sm" color='warning'>
+        Navigation
+      </DropdownToggle>
+      <DropdownMenu>
           <ButtonGroup>
             {menuButtons}
           </ButtonGroup>
+          </DropdownMenu>
+    </Dropdown>
         </div>
       </div>
     );
