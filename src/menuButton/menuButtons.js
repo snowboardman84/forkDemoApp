@@ -1,6 +1,7 @@
 import React from 'react';
 import './menuButtons.css';
 import Login from './login';
+import Logout from './logout';
 import CreateAcct from './createAcct';
 import Search from './search';
 import axios from 'axios';
@@ -9,6 +10,7 @@ import RecipeListModal from '../recipeListModal/recipeListModal';
 import Profile from '../profile.js';
 import { Button, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ForkMenuButton from "./ForkMenuButton";
+import ForkModal from '../forkModal/forkModal'
 import ModalNotification from "./modalNotification";
 import ProcessInput from '../processInput/processInput';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -20,6 +22,7 @@ export default class Menubuttons extends React.Component {
     super(props);
     this.state = {
       isModalOpen: false,
+      isForkModalOpen: false,
       test: "test",
       selectedButtonLabel: " ",
       notificationMessage: " ",
@@ -34,10 +37,11 @@ export default class Menubuttons extends React.Component {
     ]
 
     this.menuButtonLabels = [
+      "My Forks",
       "Add New Recipe",
       "View Recipe",
       "Search",
-      // "Logout"
+      "Logout"
     ]
 
     this.openModal = this.openModal.bind(this);
@@ -47,6 +51,8 @@ export default class Menubuttons extends React.Component {
     this.setNote = this.setNote.bind(this);
     this.closeAlert = this.closeAlert.bind(this);
     this.navMenuToggle = this.navMenuToggle.bind(this);
+    this.openForkModal = this.openForkModal.bind(this);
+    this.closeForkModal = this.closeForkModal.bind(this);
   }
 
   setNote(message, color, isOpen) {
@@ -93,9 +99,10 @@ export default class Menubuttons extends React.Component {
         return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} />
       case "Search":
         return <Search closeModal={this.closeModal} setNote={this.setNote} />
-      // case "Logout":
-      //   return "Thanks for stopping by!"
-    }
+        case "My Forks":
+        return <ForkModal closeModal={this.closeModal} setNote={this.setNote} />
+      case "Logout":
+        return <Logout closeModal={this.closeModal} logout={this.logout} setNote={this.setNote} />    }
   }
 
   closeModal() {
@@ -104,10 +111,21 @@ export default class Menubuttons extends React.Component {
     })
   }
 
+  closeForkModal() {
+    this.setState({
+      isForkModalOpen: false
+    })
+  }
   openModal(label) {
     this.setState({
       isModalOpen: !this.state.isModalOpen,
       selectedButtonLabel: label
+    })
+  }
+  openForkModal() {
+    this.setState({
+      isForkModalOpen: !this.state.isForkModalOpen,
+
     })
   }
 
