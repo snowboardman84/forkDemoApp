@@ -1,25 +1,44 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import fork from './fork.png';
 import './profile.css';
 
+
+
+
 export default class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+      name: '',
+      recipes: [],
+    };
+   
+
+    this.toggle = this.toggle.bind(this);
+
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
+
+
   render() {
     return (
-      <Form className="profile">
-        <FormGroup>
-          <Label for="profileName">Username</Label>
-          <Input type="profileName" name="profileName" id="profileName" placeholder="Username Goes Here" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="">UserPic</Label>
-          <Input type="profilePic" name="profilePic" id="profilePic" placeholder="profile pic goes here??" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="">Recipes Submitted</Label>
-          <Input type="submissions" name="submissions" id="submissions" placeholder="# recipes submitted??" />
-        </FormGroup>
-      </Form>
+      <div>
+        <Button color="secondary" onClick={this.toggle}>{this.props.buttonLabel}Your Profile </Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}> Your Profile on Fork!</ModalHeader>
+          <ModalBody>
+            Welcome, {this.data.username} ,
+          </ModalBody>
+        </Modal>
+      </div>
     );
   }
 }

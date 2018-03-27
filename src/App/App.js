@@ -42,9 +42,10 @@ loggedIn() {
             <area shape="rect" coords=",,," />
             <area shape="rect" coords=",,," />
           </map>
-        {/* <div>
-                {Profile}
-        </div> */}
+          
+        <div>
+               < Profile />
+        </div> 
         <br />
         <div className="Menubuttons">
           < Menubuttons isLoggedIn={this.state.isLoggedIn} loggedIn={this.loggedIn} />
