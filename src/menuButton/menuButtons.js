@@ -96,7 +96,7 @@ export default class Menubuttons extends React.Component {
       case "Add New Recipe":
         return <RecipeInputModal closeModal={this.closeModal} setNote={this.setNote} />
       case "View Recipe":
-        return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} />
+        return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} openForkModal={this.openForkModal} />
       case "Search":
         return <Search closeModal={this.closeModal} setNote={this.setNote} />
         case "My Forks":
@@ -170,6 +170,11 @@ export default class Menubuttons extends React.Component {
             </DropdownMenu>
           </Dropdown>
         </div>
+        <Modal isOpen={this.state.isForkModalOpen}>
+-          <ModalHeader>{this.state.ForkModalTitle}
+-            <Button className="closeButton" color="caution" onClick={this.closeForkModal}>Close</Button>
+-          </ModalHeader>
+-        </Modal>
       </div>
     );
   }
