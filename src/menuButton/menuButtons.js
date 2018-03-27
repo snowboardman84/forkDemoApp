@@ -118,8 +118,9 @@ export default class Menubuttons extends React.Component {
     if (this.props.isLoggedIn) {
       var menuButtons = this.menuButtonLabels.map((l) => {
         return (
-          <ForkMenuButton buttonLabel={l} openModal={this.openModal} /> 
-        )}) 
+          <ForkMenuButton buttonLabel={l} openModal={this.openModal} />
+        )
+      })
     } else {
       var menuButtons = this.loginButtonLabels.map((l) => {
         return (
@@ -140,16 +141,16 @@ export default class Menubuttons extends React.Component {
               {component}
             </ModalBody>
           </Modal>
-          <Dropdown class ="dropDownNav" direction="left" isOpen={this.state.dropdownOpen} navMenuToggle={this.navMenuToggle}>
-      <DropdownToggle onClick={this.navMenuToggle} caret size="sm" color='warning'>
-        Navigation
+          <Dropdown class="dropDownNav" direction="left" isOpen={this.state.dropdownOpen} navMenuToggle={this.navMenuToggle}>
+            <DropdownToggle onClick={this.navMenuToggle} caret size="sm" color='warning'>
+              Navigation
       </DropdownToggle>
-      <DropdownMenu>
-          <ButtonGroup>
-            {menuButtons}
-          </ButtonGroup>
-          </DropdownMenu>
-    </Dropdown>
+            <DropdownMenu>
+              <ButtonGroup>
+                {menuButtons}
+              </ButtonGroup>
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </div>
     );

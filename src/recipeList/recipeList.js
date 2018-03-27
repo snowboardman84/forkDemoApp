@@ -13,12 +13,14 @@ export default class ListRecipes extends Component {
             recipeList: [],
         };
         this.renderRecipes = this.renderRecipes.bind(this);
+        //this.closeForkModal = this.closeForkModal.bind(this);
+        //this.openForkModal = this.openForkModal.bind(this);
+        //this.renderModal = this.renderModal.bind(this);
     }
 
     componentDidMount() {
         axios.post('/listRecipes').then((result) => {
             this.setState({ recipeList: result.data });
-            console.log(`result = ${result.data.process}`);
         })
     }
 
@@ -56,7 +58,7 @@ export default class ListRecipes extends Component {
                                 </ol>
                             </Col>
                         </FormGroup>
-                        <ForkButton forkedRecipe={this.state.recipeList[i]} setNote={this.props.setNote} closeModal={this.props.closeModal} />
+                        <ForkButton openForkModal={this.props.openForkModal} forkedRecipe={this.state.recipeList[i]} setNote={this.props.setNote} closeModal={this.props.closeModal} />
                     </Jumbotron>
                 </div>
             )

@@ -6,13 +6,8 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // modal: false,
-      // nestedModal: false,
-      // closeAll: false,
       userName: '',
       password: '',
-      // loginMessage: '',
-      // loginCheck: false,
       passwordType: "password"
     };
     this.login = this.login.bind(this);
