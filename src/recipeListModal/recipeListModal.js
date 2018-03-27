@@ -26,7 +26,7 @@ export default class RecipeListModal extends React.Component {
       <div>
         {/* <Button color="danger" onClick={this.toggle}>View Recipes</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}> */}
-          <RecipeList setNote={this.props.setNote} closeModal={this.props.closeModal}/>
+          <RecipeList setNote={this.props.setNote} closeModal={this.props.closeModal} openForkModal={this.props.openForkModal}/>
         {/* </Modal> */}
       </div>
     );

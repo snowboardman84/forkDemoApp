@@ -1,6 +1,7 @@
 import React from 'react';
 import './menuButtons.css';
 import Login from './login';
+import Logout from './logout';
 import CreateAcct from './createAcct';
 import Search from './search';
 import axios from 'axios';
@@ -9,6 +10,7 @@ import RecipeListModal from '../recipeListModal/recipeListModal';
 import Profile from '../profile.js';
 import { Button, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ForkMenuButton from "./ForkMenuButton";
+import ForkModal from '../forkModal/forkModal'
 import ModalNotification from "./modalNotification";
 import ProcessInput from '../processInput/processInput';
 
@@ -17,6 +19,7 @@ export default class Menubuttons extends React.Component {
     super(props);
     this.state = {
       isModalOpen: false,
+      isForkModalOpen: false,
       test: "test",
       selectedButtonLabel: " ",
       notificationMessage: " ",
@@ -30,9 +33,11 @@ export default class Menubuttons extends React.Component {
     ]
 
     this.menuButtonLabels = [
+      "My Forks",
       "Add New Recipe",
       "View Recipe",
-      "Search"
+      "Search",
+      "Logout"
     ]
 
     this.openModal = this.openModal.bind(this);
@@ -41,6 +46,9 @@ export default class Menubuttons extends React.Component {
     this.login = this.login.bind(this);
     this.setNote = this.setNote.bind(this);
     this.closeAlert = this.closeAlert.bind(this);
+    this.openForkModal = this.openForkModal.bind(this);
+    this.closeForkModal = this.closeForkModal.bind(this);
+
   }
 
   setNote(message, color, isOpen) {
@@ -69,6 +77,7 @@ export default class Menubuttons extends React.Component {
     })
   }
 
+
   mapLabelToComponent(label) {
     switch (label) {
       case "Create Account":
@@ -77,16 +86,26 @@ export default class Menubuttons extends React.Component {
         return <Login closeModal={this.closeModal} login={this.login} setNote={this.setNote} />
       case "Add New Recipe":
         return <RecipeInputModal closeModal={this.closeModal} setNote={this.setNote} />
-      case "View Recipe":
-        return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} />
+      case "View Recipes":
+        return <RecipeListModal closeModal={this.closeModal} setNote={this.setNote} openForkModal={this.openForkModal} />
       case "Search":
         return <Search closeModal={this.closeModal} setNote={this.setNote} />
+      case "My Forks":
+        return <ForkModal closeModal={this.closeModal} setNote={this.setNote} />
+      case "Logout":
+        return <Logout closeModal={this.closeModal} logout={this.logout} setNote={this.setNote} />
     }
   }
 
   closeModal() {
     this.setState({
       isModalOpen: false
+    })
+  }
+
+  closeForkModal() {
+    this.setState({
+      isForkModalOpen: false
     })
   }
 
@@ -97,6 +116,13 @@ export default class Menubuttons extends React.Component {
     })
   }
 
+  openForkModal() {
+    this.setState({
+      isForkModalOpen: !this.state.isForkModalOpen,
+
+    })
+  }
+
   render() {
 
     let component = this.mapLabelToComponent(this.state.selectedButtonLabel);
@@ -104,8 +130,9 @@ export default class Menubuttons extends React.Component {
     if (this.props.isLoggedIn) {
       var menuButtons = this.menuButtonLabels.map((l) => {
         return (
-          <ForkMenuButton buttonLabel={l} openModal={this.openModal} /> 
-        )}) 
+          <ForkMenuButton buttonLabel={l} openModal={this.openModal} />
+        )
+      })
     } else {
       var menuButtons = this.loginButtonLabels.map((l) => {
         return (
@@ -130,6 +157,11 @@ export default class Menubuttons extends React.Component {
             {menuButtons}
           </ButtonGroup>
         </div>
+        <Modal isOpen={this.state.isForkModalOpen}>
+          <ModalHeader>{this.state.ForkModalTitle}
+            <Button className="closeButton" color="caution" onClick={this.closeForkModal}>Close</Button>
+          </ModalHeader>
+        </Modal>
       </div>
     );
   }
