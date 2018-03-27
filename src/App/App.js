@@ -6,9 +6,10 @@ import RecipeInputModal from '../recipeInputModal/recipeInputModal.js';
 import Spinner from '../spinThing.js';
 import Contact from '../Us/contact.js';
 import About from '../Us/aboutUs.js'
-import RecipeListModal from '../recipeListModal/recipeListModal'
+import RecipeListModal from '../recipeListModal/recipeListModal';
 import Profile from '../profile.js';
 import { render } from 'react-dom'
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 // import ImageMapper from 'react-image-mapper';
 // import LineChart from 'react-linechart';
 
@@ -36,18 +37,8 @@ loggedIn() {
     // }
     return (
       <div className="App">
-        <img src={logo} className="fork_logo" alt="logo" usemap="#image-map"/>
-          <map name="image-map">
-            <area shape="rect" coords=",,," />
-            <area shape="rect" coords=",,," />
-            <area shape="rect" coords=",,," />
-          </map>
-          
-        <div>
-               < Profile />
-        </div> 
-        <br />
-        <div className="Menubuttons">
+      <div className="headerMenu">
+      <div className="Menubuttons">
           < Menubuttons isLoggedIn={this.state.isLoggedIn} loggedIn={this.loggedIn} />
           <br />
           <br />
@@ -55,21 +46,36 @@ loggedIn() {
           <br />
           <br />
           <br />
-          <br />
-          <br />
         </div>
+
+      </div>
+        <img src={logo} className="fork_logo" alt="logo" usemap="#image-map"/>
+          <map name="image-map">
+            <area shape="rect" coords="50,75,190,200," href="localhost:3000/search.html"  alt="" />
+            <area shape="rect" coords="205,75,340,200" href="localhost:3000/make.html" alt="" />
+            <area shape="rect" coords="355,75,500,200" href="localhost:3000/share.html" alt="" />
+          </map>
+          
+        <div>
+               < Profile />
+        </div> 
+        <br />
         {/* < Spinner className="Spin" /> */}
         <div className="lowerButtons">
         <br />
-              < Contact /> < About />
-            <br />
+          < Contact />
+           < About />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           </div>
           <br />
           <div >
             <br />
               <ul>
                 <p2 class="copyright"> © Fork | 2018 All rights are given for free. You're Welcome.</p2>
-              <br />
               <br />
               </ul>
           </div>
